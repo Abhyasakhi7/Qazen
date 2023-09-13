@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        @media (max-width: 768px) {
+            /* CSS untuk layar dengan lebar maksimum 768px */
+            .logo-text {
+                font-size: 3rem; /* Contoh penyesuaian ukuran teks */
+            }
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 100%;
+            background-color: #c0c0c0;
+            z-index: 1;
+            animation: fadeLeftToRight 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeLeftToRight {
+            from {
+                width: 0;
+            }
+            to {
+                width: 40px; /* atau lebar border kiri Anda */
+            }
+        }
+
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40px;
+            height: 100%;
+            background-color: #c0c0c0;
+            z-index: 1;
+            animation: fadeRightToLeft 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeRightToLeft {
+        from {
+            width: 0;
+        }
+        to {
+            width: 40px; /* atau lebar border kanan Anda */
+        }
+    }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(to bottom, rgb(255, 255, 255), rgb(255, 255, 255));
+            color: white;
+            overflow-x: hidden;
+            border-right: 5px #c0c0c0;
+            border-left: 5px #c0c0c0;
+            position: relative;
+            z-index: 1;
+            background-image: url(images/background.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, white);
+            z-index: 1;
+        }
+
+        /* batas logo */
+        .center-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* Use min-height instead of height to fill the screen */
+            transition: all 0.5s ease-in-out;
+        }
+
+        .center-logo img {
+            max-width: 50%;
+            height: auto;
+            margin-top: -160px; /* Adjust this value to fine-tune the logo position */
+            transition: all 0.5s ease-in-out;
+        }
+
+        .logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 5rem;
+            color: black;
+            margin-top: -50px; /* atur batas atas */
+            transition: all 0.5s ease-in-out;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* tulisan class member */
+        .title-class{
+            margin-top: 300px;
+            color: black;
+            background-color: white;
+            border-radius: 20px;
+            border: 2px solid black;
+            text-align: center; /* ini yang ngatur jadi tengah */
+            display: flex;
+            justify-content: center; /* ini juga yang ngatur ke tengah bedanya ini yang horizontal */
+            align-items: center; /* in juga beda nya ini yang vertical */
+            height: 10vh;
+            font-size: 50px;
+        }
+
+
+        /* batas member box */
+        .member-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            width: calc(23% - 20px); /*setiap baris memiliki 4 kotak*/
+            margin: 100px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Ubah efek shadow */
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            animation: fadeUp 1s forwards;
+            border: 2px solid black;
+        }
+        
+        /* Efek fade-up */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        @media (min-width: 1200px) {
+            .d-flex.flex-wrap.justify-content-center {
+                justify-content: flex-start;
+            }
+            .member-box {
+                width: calc(25% - 20px);
+                margin: 10px;
+            }
+        }
+
+        .member-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .member-name {
+            margin-top: 10px;
+        }
+
+        .member-box h3 {
+            margin-top: 15px;
+            margin-left: 70px;
+            margin-bottom: 5px;/*atur margin bawah untuk judul*/
+            text-align: center;
+            color: black;
+        }
+
+        .member-box p {
+            text-align: center;
+            margin-top: 0px;
+            margin-left: 70px;
+            margin-bottom: 0px;
+            color: black;
+        }
+
+        .member-box .member-icon {
+            position: absolute;
+            top: 337px;
+            left: 77px;
+            transform: translate(-50%, -50%); /* Perbaikan di bagian transform */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: #ffffff;
+            border-radius: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-box .member-icon img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 100%; /* Membuat gambar dalam bentuk lingkaran */
+        }
+
+        .member-box:hover {
+            border: 2px solid rgb(0, 0, 0);/*tampilkan border saat di hover*/
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* tambahkan efek shadow ketika dihover */
+        }
+
+        .member-box.expanded {
+            transform: scale(1.05);
+        }
+
+        .member-bio {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            margin-top: 10px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            border: 2px solid rgb(0, 0, 0); /* tambahkan properti border*/
+            padding: 20px; /*sesuaikan padding jika di perlukan*/
+        }
+
+        .member-box.expanded .member-bio {
+            display: block;
+            max-height: 500px;
+            opacity: 1;
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            border: 2px solid rgb(0, 0, 0);
+            padding: 20px;
+        }
+
+        .member-box img {
+            border: 2px solid rgb(0, 0, 0);
+            padding: auto;
+            border-radius: 10px;
+        }
+
+        .center-logo h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-down {
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeDown 1s forwards;
+        }
+
+        @keyframes fadeDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        
+        @keyframes glowingBorder {
+            from {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            }
+            to {
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            }
+        }
+
+    </style>
+    <title>QAZENTHARIUM</title>
+</head>
+<body>
+    <div class="content smooth-scroll">
+        <div class="center-logo smooth-scroll fade-up">
+            <img src="images/logo.png" alt="Logo">
+            <h3 class="logo-text smooth-scroll fade-up">Qaleros Imperium</h3>
+        </div>
+        <div class="container mt-5 smooth-scroll">
+            <h2 class="title-class smooth-scroll fade-down">Class Members</h2>
+            <div class="d-flex flex-wrap justify-content-center">
+                <!-- Kotak Member 1 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/arfan/index.html">
+                    <div class="member-icon">
+                        <img src="icon/keamanan.png" alt="Icon">
+                    </div>
+                    <img src="images/member1.jpg" alt="Member 1">
+                    <div class="member-content">
+                        <h3 class="member-name">Arfan</h3>
+                        <p>Keamanan</p>
+                    </div>
+                    <div class="member-bio">
+                        <h4>Member 1</h4>
+                        <p1>Position: Position 1</p1>
+                        <p1>Information about Member 1.</p1>
+                    </div>
+                </div> 
+                <!-- Kotak Member 2 -->                               
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/raghib/index.html"> 
+                    <div class="member-icon">
+                        <img src="icon/kebersihan.png" alt="Member 2">
+                    </div>
+                    <img src="images/member2.jpg" alt="Member 4">
+                    <h3>Raghib</h3>
+                    <p>Kebersihan</p>
+                    <div class="member-bio">
+                        <h4>Member 2</h4>
+                        <p1>Position: Position 2</p1>
+                        <p1>Information about Member 2.</p1>
+                    </div>
+                </div>
+                <!-- Kotak Member 3 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/haikal/index.html">
+                    <div class="member-icon">
+                        <img src="icon/bendahara.png" alt="Member 3">
+                    </div>
+                    <img src="images/member3.jpg" alt="Member 5">
+                    <h3>Haikal</h3>
+                    <p>Bendahara</p>
+                    <div class="member-bio">
+                        <h4>Member 3</h4>
+                        <p>Position: Position 3</p>
+                        <p>Information about Member 3.</p>
+                    </div>
+                </div>
+                <!-- Kotak Member 4 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/parsa/index.html">
+                    <div class="member-icon">
+                        <img src="icon/bendahara.png" alt="Member 4">
+                    </div>
+                    <img src="images/member4.jpg" alt="Member 6">
+                    <h3>Parsa</h3>
+                    <p>Bendahara</p>
+                    <div class="member-bio">
+                        <h4>Member 4</h4>
+                        <p>Position: Position 4</p>
+                        <p>Information about Member 4.</p>
+                    </div>
+                </div>
+                <!-- Kotak Member 5 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/rafly/index.html">
+                    <div class="member-icon">
+                        <img src="icon/ketua.png" alt="Member 5">
+                    </div>
+                    <img src="images/member5.jpg" alt="Member 6">
+                    <h3>Rafly</h3>
+                    <p>Ketua</p>
+                    <div class="member-bio">
+                        <h4>Member 5</h4>
+                        <p>Position: Position 5</p>
+                        <p>Information about Member 5.</p>
+                    </div>
+                </div>
+                <!-- Kotak Member 6 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/ujang/index.html">
+                    <div class="member-icon">
+                        <img src="icon/sekretaris.png" alt="Member 6">
+                    </div>
+                    <img src="images/member6.jpg" alt="Member 6">
+                    <h3>Ujang</h3>
+                    <p>Sekretaris</p>
+                    <div class="member-bio">
+                        <h4>Member 6</h4>
+                        <p>Position: Position 6</p>
+                        <p>Information about Member 6.</p>
+                    </div>
+                </div>
+                <!-- Kotak member 7 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/fadhil/index.html">
+                    <div class="member-icon">
+                        <img src="icon/snack.png" alt="Member 7">
+                    </div>
+                    <img src="images/member7.jpg" alt="Member 6">
+                    <h3>Fadhil</h3>
+                    <p>PJ Snack</p>
+                    <div class="member-bio">
+                        <h4>Member 7</h4>
+                        <p>Position: Position 7</p>
+                        <p>Information about Member 7</p>
+                    </div>
+                </div>
+                <!-- kotak member 8 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/garox/index.html">
+                    <div class="member-icon">
+                        <img src="icon/keamanan.png" alt="Member 8">
+                    </div>
+                    <img src="images/member8.jpg" alt="Member 6">
+                    <h3>Garox</h3>
+                    <p>Keamanan</p>
+                    <div class="member-bio">
+                        <h4>Member 8</h4>
+                        <p>Position: Position 8</p>
+                        <p>Information about Member 8.</p>
+                    </div>
+                </div>
+                <!-- kotak member 9 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/hafizh/index.html">
+                    <div class="member-icon">
+                        <img src="icon/ketua.png" alt="Member 9">
+                    </div>
+                    <img src="images/member9.jpg" alt="Member 6">
+                    <h3>Hafizh</h3>
+                    <p>Wakil</p>
+                    <div class="member-bio">
+                        <h4>Member 9</h4>
+                        <p>Position: Position 9</p>
+                        <p>Information about Member 9.</p>
+                    </div>
+                </div>
+                <!-- kotak member 10 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/nabil/index.html">
+                    <div class="member-icon">
+                        <img src="icon/kreatif.png" alt="Member 10">
+                    </div>
+                    <img src="images/member10.jpg" alt="Member 6">
+                    <h3>Nabil</h3>
+                    <p> Tim Kreatif</p>
+                    <div class="member-bio">
+                        <h4>Member 10</h4>
+                        <p>Position: Position 10</p>
+                        <p>Information about Member 10.</p>
+                    </div>
+                </div>
+                <!-- kotak member 11 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/antares/index.html">
+                    <div class="member-icon">
+                        <img src="icon/snack.png" alt="Member 11">
+                    </div>
+                    <img src="images/member11.jpg" alt="Member 6">
+                    <h3>Antares</h3>
+                    <p>PJ Snack</p>
+                    <div class="member-bio">
+                        <h4>Member 11</h4>
+                        <p>Position: Position 11</p>
+                        <p>Information about Member 11.</p>
+                    </div>
+                </div>
+                <!-- member kotak 12 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/nurul/index.html">
+                    <div class="member-icon">
+                        <img src="icon/kebersihan.png" alt="Member 12">
+                    </div>
+                    <img src="images/member12.jpg" alt="Member 6">
+                    <h3>Nurul</h3>
+                    <p>Kebersihan</p>
+                    <div class="member-bio">
+                        <h4>Member 6</h4>
+                        <p>Position: Position 6</p>
+                        <p>Information about Member 6.</p>
+                    </div>
+                </div>
+                <!-- member kotak 13 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/ruffina/index.html">
+                    <div class="member-icon">
+                        <img src="icon/sekretaris.png" alt="Member 13">
+                    </div>
+                    <img src="images/member13.jpg" alt="Member 6">
+                    <h3>Ruffina</h3>
+                    <p>Sekretaris</p>
+                    <div class="member-bio">
+                        <h4>Member 6</h4>
+                        <p>Position: Position 6</p>
+                        <p>Information about Member 6.</p>
+                    </div>
+                </div>
+                <!-- member kotak 14 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/zhafira/index.html">
+                    <div class="member-icon">
+                        <img src="icon/keamanan.png" alt="Member 14">
+                    </div>
+                    <img src="images/member14.jpg" alt="Member 6">
+                    <h3>Zhafira</h3>
+                    <p>Keamanan</p>
+                    <div class="member-bio">
+                        <h4>Member 6</h4>
+                        <p>Position: Position 6</p>
+                        <p>Information about Member 6.</p>
+                    </div>
+                </div>
+                <!-- member kotak 15 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/tusy/index.html">
+                    <div class="member-icon">
+                        <img src="icon/snack.png" alt="Member 15">
+                    </div>
+                    <img src="images/member15.jpg" alt="Member 6">
+                    <h3>Tusy</h3>
+                    <p>PJ Snack</p>
+                    <div class="member-bio">
+                        <h4>Member 6</h4>
+                        <p>Position: Position 6</p>
+                        <p>Information about Member 6.</p>
+                    </div>
+                </div>
+                <!-- member kotak 16 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/aliya/index.html">
+                    <div class="member-icon">
+                        <img src="icon/snack.png" alt="Member 16">
+                    </div>
+                    <img src="images/member16.jpg" alt="Member 6">
+                    <h3>Aliya</h3>
+                    <p>PJ Snack</p>
+                    <div class="member-bio">
+                        <h4>Member 6</h4>
+                        <p>Position: Position 6</p>
+                        <p>Information about Member 6.</p>
+                    </div>
+                </div>
+                <!-- member kotak 17 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/naida/index.html">
+                    <div class="member-icon">
+                        <img src="icon/kebersihan.png" alt="Member 17">
+                    </div>
+                    <img src="images/member17.jpg" alt="Member 6">
+                    <h3>Naida</h3>
+                    <p>Kebersihan</p>
+                    <div class="member-bio">
+                        <h4>Member 6</h4>
+                        <p>Position: Position 6</p>
+                        <p>Information about Member 6.</p>
+                    </div>
+                </div>
+                <!-- member kotak 18 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/naiya/index.html">
+                    <div class="member-icon">
+                        <img src="icon/kebersihan.png" alt="Member 18">
+                    </div>
+                    <img src="images/member18.jpg" alt="Member 6">
+                    <h3>Naiya</h3>
+                    <p>Kebersihan</p>
+                    <div class="member-bio">
+                        <h4>Member 6</h4>
+                        <p>Position: Position 6</p>
+                        <p>Information about Member 6.</p>
+                    </div>
+                </div>
+                <!-- member kotak 19 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/tiara/index.html">
+                    <div class="member-icon">
+                        <img src="icon/keamanan.png" alt="Member 19">
+                    </div>
+                    <img src="images/member19.jpg" alt="Member 6">
+                    <h3>Tiara</h3>
+                    <p>Keamanan</p>
+                    <div class="member-bio">
+                        <h4>Member 6</h4>
+                        <p>Position: Position 6</p>
+                        <p>Information about Member 6.</p>
+                    </div>
+                </div>
+                <!-- member kotak 20 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/katara/index.html">
+                    <div class="member-icon">
+                        <img src="icon/kreatif.png" alt="Member 20">
+                    </div>
+                    <img src="images/member20.jpg" alt="Member 6">
+                    <h3>Katara</h3>
+                    <p>Tim Kreatif</p>
+                    <div class="member-bio">
+                        <h4>Member 6</h4>
+                        <p>Position: Position 6</p>
+                        <p>Information about Member 6.</p>
+                    </div>
+                </div>
+                <!-- kotak member 21 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/elvetta/index.html">
+                    <div class="member-icon">
+                        <img src="icon/kreatif.png" alt="Member 21">
+                    </div>
+                    <img src="images/member21.jpg" alt="Member 6">
+                    <h3>Elvetta</h3>
+                    <p>Tim Kreatif</p>
+                    <div class="member-bio">
+                        <h4>Member 6</h4>
+                        <p>Position: Position 6</p>
+                        <p>Information about Member 6.</p>
+                    </div>
+                </div>
+                <!-- member kotak 22 -->
+                <div class="member-box smooth-scroll" onclick="toggleMemberBio(this)" data-href="bio/falisha/index.html">
+                    <div class="member-icon">
+                        <img src="icon/bendahara.png" alt="Member 22">
+                    </div>
+                    <img src="images/member22.jpg" alt="Member 6">
+                    <h3>Falisha</h3>
+                    <p>Bendahara</p>
+                    <div class="member-bio">
+                        <h4>Member 6</h4>
+                        <p>Position: Position 6</p>
+                        <p>Information about Member 6.</p>
+                    </div>
+                </div>
+                <!-- kotak member sob -->
+            </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const memberBoxes = document.querySelectorAll('.member-box');
+            
+            memberBoxes.forEach((box, index) => {
+                box.style.animationDelay = `${index * 0.2}s`;
+            });
+
+            // Menambahkan efek fade setelah delay
+            setTimeout(() => {
+                memberBoxes.forEach((box, index) => {
+                    box.classList.add('fade-up'); // Tambahkan class fade-up untuk efek fade
+                });
+            }, -100000); // Ubah nilai delay sesuai kebutuhan
+        });
+        function toggleMemberBio(memberBox) {
+            const allMemberBoxes = document.querySelectorAll('.member-box');
+            allMemberBoxes.forEach(box => {
+                if (box !== memberBox) {
+                    box.classList.remove('expanded');
+                }
+            });
+        // Jika kotak member sudah diperluas, biografinya akan ditampilkan, dan sebaliknya
+        const isExpanded = memberBox.classList.toggle('expanded');
+        
+        // Arahkan ke halaman baru jika kotak member ditekan
+        if (isExpanded) {
+            const href = memberBox.getAttribute('data-href');
+            if (href) {
+                window.location.href = href;
+            }
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+    const smoothScrollLinks = document.querySelectorAll('.smooth-scroll');
+    
+    for (const link of smoothScrollLinks) {
+        link.addEventListener('click', smoothScrollToTarget);
+    }
+    
+    function smoothScrollToTarget(event) {
+        event.preventDefault();
+        
+        const targetId = event.target.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+            const topOffset = targetElement.getBoundingClientRect().top + window.pageYOffset;
+            
+            window.scrollTo({
+                top: topOffset,
+                behavior: 'smooth'
+            });
+        }
+    }
+});
+
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

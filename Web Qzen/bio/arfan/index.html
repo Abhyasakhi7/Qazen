@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QAZENTHARIUM</title>
+<style>
+  body {
+    font-family: Verdana, Arial, sans-serif;
+    margin: 0;
+    background-image: url(background.png); /* Ganti dengan URL gambar latar belakang */
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation: fade-in 1s ease-out, fade-in-background 1s ease-out;
+  }
+    @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+    @keyframes fade-in-background {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .center-layer {
+    flex: 1;
+    margin-top: 58px;
+    margin-left: 140px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    animation: fade-in 1s ease-out;
+  }
+  .left-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .right-section {
+    width: 100%;
+    background-color: #f5f5f5;
+    padding: 10px;
+    animation: fade-in-from-left 1s ease-out
+  }
+  img {
+    max-width: 105%;
+    height: auto;
+    animation: fade-in-from-left 1s ease-out
+  }
+  hr.double-line {
+    border: none;
+    border-top: 20px double black;
+    width: 100%;
+    margin: 20px auto;
+  }
+  /* Media queries untuk tata letak responsif */
+  @media (min-width: 768px) {
+    .container {
+      flex-direction: row;
+    }
+    .center-layer {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .left-section {
+      width: 50%;
+    }
+    .right-section {
+      width: 80%;
+      padding: 10px;
+    }
+    .right-section h2 {
+      font-size: 2rem; /* Ukuran teks diperbesar */
+    }
+    .right-section p {
+      font-size: 1.2rem; /* Ukuran teks diperbesar */
+    }
+  }
+  /* Animasi fade-in dari kiri */
+  @keyframes fade-in-from-left {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  .image-container {
+    width: 80%;
+    height: 550px;
+    overflow: hidden;
+    border: 5px solid black; /* menambah border hitam sebesar yang di tentukan */
+    box-sizing: border-box; /* memastikan border tidak memengaruhi lrbar total */
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="center-layer">
+      <div class="left-section">
+        <div class="image-container">
+          <img src="arfan.png" alt="Foto">
+        </div>
+      </div>
+      <div class="right-section">
+        <hr class="double-line">
+        <h2>Muhammad Arfan Putra Dyansyah</h2>
+        <p>TTL: Batam, 17 Juli 2006</p>
+        <p>Alamat: </p>
+        <p>Motto: </p>
+        <p>Pesan: </p>
+        <p>Hobi: Ngerancang</p>
+        <p>Lulusan: </p>
+        <p>Kelebihan: </p>
+        <p>Status: </p>
+        <p>Tipe Pasangan: Kebalikan saya dan kekurangan saya</p>
+        <p>Prestasi: Nobel electro regulatory infinity</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
